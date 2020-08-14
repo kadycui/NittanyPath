@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title></title>
+    </head>
+
+ <div class="card mb-3">
+            <div class="card-header">
+              <i class="fa fa-table"></i> Student's Current Course</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Course ID</th>
+                      <th>Exam Grade</th>
+                      <th>Course Description</th>
+                      <th>Professor Email</th>
+                      <th>Office Location</th>
+                      <th>late_drop_deadline</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                  </tfoot>
+                  <tbody id="customer-table">
+            <!-- loop for returning the result -->
+            {% for CourseID, Exam_Grade, Course_Description, ProEmail, Office,late_drop_deadline in courseinfo %}
+                <tr>
+                <td scope="row"> {{ CourseID }} </td>
+                <td scope="row"> {{ Exam_Grade }} </td>
+                <td scope="row"> {{ Course_Description }} </td>
+                <td scope="row"> {{ ProEmail }} </td>
+                <td scope="row"> {{ Office  }} </td>
+                <td scope="row"> {{ late_drop_deadline  }} </td>
+                </tr>
+            {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
+        </div>
+
+        </form>
+    </div>
+        </html>
+
+<div class="container-sm">
+    <div class="card-body">
+        <h3 class="card-title">Drop a Course</h3>
+
+        <!-- we use /name route and POST method to get the first and last name inserted -->
+        <form action="" method="POST">
+            <div class="form-group">
+                <label for="Courses">Course Name</label>
+                <input type="text" name="CourseName" required class="form-control" placeholder="Enter course ID such as CSE 583">
+            </div>
+            <div class="form-group">
+                <label for="Post_Info">Confirm Course Name </label>
+                <input type="text" name="ConfirmCourseName" required class="form-control" placeholder="Enter course ID such as CSE 583">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Post</button>
+            <a class="btn btn-info" href="/dashStudent" role="button">Go Back</a> <!--这里应该要反回dashstudent.html  -->
+        </form>
+    </div>
+
+<style>
+
+    #row_style {
+        margin-top: 30px;
+    }
+
+    #submit {
+        display: block;
+        margin: auto;
+    }
+</style>
+
+<!-- you need to include the shieldui css and js assets in order for the charts to work -->
+<link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+<script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+
+<script>
+    $(function () {
+        $("#editor").shieldEditor({
+            height: 260
+        });
+    })
+</script></div>

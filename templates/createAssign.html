@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    </head>
+<div class="card mb-3">
+            <div class="card-header">
+              <i class="fa fa-table" ></i> Current Homework</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Course ID</th>
+                      <th>Section Number</th>
+                      <th>Homework Number</th>
+                      <th>Homework Details</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                  </tfoot>
+                  <tbody id="customer-table">
+            <!-- loop for returning the result -->
+            {% for CourseID, SecNo, Hw_No, Hw_Details in homeworkdata %}
+                <tr>
+                <td scope="row"> {{ CourseID }} </td>
+                <td scope="row"> {{ SecNo }} </td>
+                <td scope="row"> {{ Hw_No }} </td>
+                <td scope="row"> {{ Hw_Details }} </td>
+                </tr>
+            {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
+
+<div class="card mb-3">
+            <div class="card-header">
+              <i class="fa fa-table" ></i> Current Exams</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Course ID</th>
+                      <th>Section Number</th>
+                      <th>Exam Number</th>
+                      <th>Exam Details</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                  </tfoot>
+                  <tbody id="customer-table">
+            <!-- loop for returning the result -->
+            {% for CourseID, SecNo, Exam_No, Exam_Details in coursedata %}
+                <tr>
+                <td scope="row"> {{ CourseID }} </td>
+                <td scope="row"> {{ SecNo }} </td>
+                <td scope="row"> {{ Exam_No }} </td>
+                <td scope="row"> {{ Exam_Details }} </td>
+                </tr>
+            {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
+        </html>
+
+<form class="container-sm">
+    <div class="card-body">
+        <h3 class="card-title">Create New Assignment</h3>
+        <form action="/name" method="POST">
+            <div class="form-group">
+                <label>Assignment Type:</label>
+                <select class="select" onChange="javascript:test('mune_x' + this.value)">
+                    <option value="1">Homework</option>
+                    <option value="2">Exam</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</form>
+        <form action="/createHomExa" method="POST">
+            <input type="text" id="flag" value="mune_x1" name="flag" style="display: none">
+
+            <div id="x1" style="display: block" class="form-group">
+                <label for="Courses">Course Name</label>
+                <input type="text" name="hCourseName"   class="form-control" placeholder="Enter course ID such as CSE 583">
+            </div>
+            <div id="x2" style="display: block" class="form-group">
+                <label for="Courses">Section Number</label>
+                <input type="text" name="hSectionNumber"   class="form-control" placeholder="Enter Section Number">
+            </div>
+            <div id="x3" style="display: block" class="form-group">
+                <label for="Courses">Homework Number</label>
+                <input type="text" name="HomeworkNumber"   class="form-control" placeholder="Enter Homework Number">
+            </div>
+            <div id="x4" style="display: block" class="form-group">
+                <label for="Post_Info">Homework Information</label>
+                <input type="text" name="HomeworkInformation"   class="form-control" placeholder="Submit Homework Info here...">
+            </div>
+            <div id="x5" style="display: none" class="form-group">
+                <label for="Courses">Course name</label>
+                <input type="text" name="eCoursename"   class="form-control" placeholder="Enter course ID such as CSE 583">
+            </div>
+            <div id="x6" style="display: none" class="form-group">
+                <label for="Courses">Section Number</label>
+                <input type="text" name="eSectionNumber"   class="form-control" placeholder="Enter Section Number">
+            </div>
+            <div id="x7" style="display: none" class="form-group">
+                <label for="Courses">Exam Number</label>
+                <input type="text" name="ExamNumber"   class="form-control" placeholder="Enter Exam Number">
+            </div>
+            <div id="x8" style="display: none" class="form-group">
+                <label for="Post_Info">Exam Details</label>
+                <input type="text" name="ExamDetails"   class="form-control" placeholder="Submit Exam Details here...">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Post</button>
+            <a class="btn btn-info" href="/dashStudent" role="button">Go Back</a>
+        </form>
+
+<style>
+    #row_style {
+        margin-top: 30px;
+    }
+
+    #submit {
+        display: block;
+        margin: auto;
+    }
+</style>
+
+<!-- you need to include the shieldui css and js assets in order for the charts to work -->
+<link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+<script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+
+<script>
+    $(function () {
+        $("#editor").shieldEditor({
+            height: 260
+        });
+    })
+</script>
+<script language="javascript" type="text/javascript">
+    function test(Names) {
+         var Nam
+         Nam = Names
+        console.log(Nam)
+        if (Nam == "mune_x1") {
+            Nnews1 = document.getElementById("x1")
+            Nnews1.style.display = '';
+            Nnews2 = document.getElementById("x2")
+            Nnews2.style.display = '';
+            Nnews3 = document.getElementById("x3")
+            Nnews3.style.display = '';
+            Nnews4 = document.getElementById("x4")
+            Nnews4.style.display = '';
+            Nnews5 = document.getElementById("x5")
+            Nnews5.style.display = 'none';
+            Nnews6 = document.getElementById("x6")
+            Nnews6.style.display = 'none';
+            Nnews7 = document.getElementById("x7")
+            Nnews7.style.display = 'none';
+            Nnews8 = document.getElementById("x8")
+            Nnews8.style.display = 'none';
+        } if (Nam == "mune_x2") {
+            Nnews1 = document.getElementById("x1")
+            Nnews1.style.display = 'none';
+            Nnews2 = document.getElementById("x2")
+            Nnews2.style.display = 'none';
+            Nnews3 = document.getElementById("x3")
+            Nnews3.style.display = 'none';
+            Nnews4 = document.getElementById("x4")
+            Nnews4.style.display = 'none';
+            Nnews5 = document.getElementById("x5")
+            Nnews5.style.display = 'block';
+            Nnews6 = document.getElementById("x6")
+            Nnews6.style.display = 'block';
+            Nnews7 = document.getElementById("x7")
+            Nnews7.style.display = 'block';
+            Nnews8 = document.getElementById("x8")
+            Nnews8.style.display = 'block';
+            }
+
+        $("#flag").val(Nam)
+        }
+</script>
+
+
+</html>

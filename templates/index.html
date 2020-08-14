@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Nittany Path</title>
+		<link rel="stylesheet" href="../static/style.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+	</head>
+	<body>
+		<div class="login">
+            <h1>Welcome to Nittany Path!</h1>
+			<div class="links">
+				<a href="index.html" class="active">Login</a>
+			</div>
+			<form name="login" method="POST" action="/login" class ="class-body">
+				<label for="username">
+					<i class="fas fa-user"></i>
+				</label>
+				<input type="text" class="form-control" placeholder="username" name="username" required />
+				<label for="password">
+					<i class="fas fa-lock"></i>
+				</label>
+				<input type="password" class="form-control" placeholder="password" name="password" required/>
+				<div class="msg"></div>
+				<input type="submit" value="Login">
+			</form>
+		</div>
+	</body>

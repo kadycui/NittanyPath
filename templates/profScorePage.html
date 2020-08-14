@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title></title>
+    </head>
+<body>
+<a class="btn btn-info" href="/dashStudent" role="button">Go Back</a>
+<form action="" method="post">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Stu Email</th>
+                      <th>Score</th>
+                        <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                  </tfoot>
+                  <tbody id="customer-table">
+            <!-- loop for returning the result -->
+            {% for email, score,cid in courseinfo %}
+                <tr>
+                    <td scope="row"> {{ email }} </td>
+                <td scope="row"><input type="text" name="score" value="{{ score }}"></td>
+                    <td style="display: none" scope="row"> {{ cid }} </td>
+                <td><a href="#" onclick="change_score(this)">Edit</a></td>
+                </tr>
+            {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+{#<button type="submit" class="btn btn-primary">Submit Post</button>#}
+    </form>
+<script>
+    function change_score(ele) {
+        var This = $(ele)
+		{#var new_expect_time = This.parent().siblings().eq(1).find("input").val()#}
+		var score = $(ele).parent().siblings().eq(1).find('input').val()
+		var user_name = $(ele).parent().siblings().eq(0).html()
+        var cid = $(ele).parent().siblings().eq(2).html()
+        console.log(score,user_name,cid)
+        if(confirm("are you sure？")){
+			$.ajax({
+				url:"/edit_score/?"+"score="+score+"&"+"email="+user_name+"&cid="+cid,
+				type:"GET",
+				dataType:"json",
+
+			})
+			.done(function(data){
+				console.log(data)
+
+			})
+			.fail(function() {
+				art.dialog('失败!')
+			})
+		}
+
+    }
+</script>
+</body>
+</html>

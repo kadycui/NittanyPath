@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title></title>
+    </head>
+<div class="container">
+    <h1>Edit Profile</h1>
+  	<hr>
+	<div class="row">
+
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+        <div class="alert alert-info alert-dismissable">
+          <a class="panel-close close" data-dismiss="alert">×</a>
+          <i class="fa fa-coffee"></i>
+          Due to the construction of NittanyPath, Stdudent are <strong>only</strong> allowed to change their password currently.
+        </div>
+        <h3>Change Password</h3>
+{% block content %}
+<div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    {% block page_content %}{% endblock %}
+</div>
+{% endblock %}
+        <form class="form-horizontal" method="POST" action="/checkinfo">
+            <div class="form-group">
+{#            <label class="col-md-3 control-label">Email:</label>#}
+            <div class="col-md-8">
+              <input class="form-control" type="text" name="username" style="display: none">
+            </div>
+          </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Your Account:</label>
+                <div class="col-md-8">
+                    <h4 class="text-info">{{ data }}</h4>
+            </div>
+            </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">New Password:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" name="newpwd">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Confirm password:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" name="confirmpwd" >
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+                <button type="submit" class="btn btn-primary" >Save Changes</button>
+              <span></span>
+              <a class="btn btn-info" href="/dashStudent" role="button">Go Back</a>
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+<hr>

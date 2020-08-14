@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title></title>
+    </head>
+<div class="card mb-3">
+            <div class="card-header">
+              <i class="fa fa-table" ></i> Student's Current Posts</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Post_ID</th>
+                      <th>Courses</th>
+                      <th>Post_Info</th>
+                      <th>Student_mail</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                  </tfoot>
+                  <tbody id="customer-table">
+            <!-- loop for returning the result -->
+            {% for post in data %}
+                <tr>
+                    <td scope="row"> {{ post[0] }} </td>
+                <td scope="row"> {{ post[1]}} </td>
+                <td scope="row"> {{ post[2] }} </td>
+                <td scope="row"> {{post[3]}} </td>
+                </tr>
+            {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
+        </html>
+
+<div class="container-sm">
+    <div class="card-body">
+        <h3 class="card-title">Create a New Post</h3>
+
+        <!-- we use /name route and POST method to get the first and last name inserted -->
+        <form action="/addpost" method="POST">
+            <div class="form-group">
+                <label for="Courses">Course name</label>
+                <input type="text" name="FirstName" required class="form-control" placeholder="Enter course ID such as CSE 583">
+            </div>
+            <div class="form-group">
+                <label for="Post_Info">Post Information</label>
+                <input type="text" name="LastName" required class="form-control" placeholder="Submit your post here...">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Post</button>
+            <a class="btn btn-info" href="/dashStudent" role="button">Go Back</a> <!--这里应该要反回dashstudent.html  -->
+        </form>
+    </div>
+
+<style>
+
+    #row_style {
+        margin-top: 30px;
+    }
+
+    #submit {
+        display: block;
+        margin: auto;
+    }
+</style>
+
+<!-- you need to include the shieldui css and js assets in order for the charts to work -->
+<link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+<script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+
+<script>
+    $(function () {
+        $("#editor").shieldEditor({
+            height: 260
+        });
+    })
+</script></div>
